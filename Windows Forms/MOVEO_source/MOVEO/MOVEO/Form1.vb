@@ -1,4 +1,4 @@
-﻿Imports System.IO.Ports
+Imports System.IO.Ports
 Public Class Form1
     Public ejex, ejey, ejez, ejee, ejeb, ejes As Long
     Dim copiado As String
@@ -7,56 +7,82 @@ Public Class Form1
 
     Dim Matriu(100, 6) As Integer
 
-    Private sub Ini_matriu()
-        for i = 0 to 99
-            for j = 0 to 5
+    Private Sub Ini_matriu()
+        For i = 0 To 99
+            For j = 0 To 5
                 Matriu(i, j) = 0
             Next j
-        Next i 
-    End sub
+        Next i
+    End Sub
 
-    private sub Cargar_matriu()
-        Matriu(1, 0) = 1
-        Matriu(1, 1) = 1
-        Matriu(1, 2) = 1
-        Matriu(1, 3) = 1
-        Matriu(1, 4) = 1
-        Matriu(1, 5) = 1
+    Private Sub Cargar_matriu()
+        Matriu(1, 0) = 50
+        Matriu(1, 1) = 50
+        Matriu(1, 2) = 50
+        Matriu(1, 3) = 50
+        Matriu(1, 4) = 50
+        Matriu(1, 5) = 50
 
-        Matriu(2, 0) = 1
-        Matriu(2, 1) = 1
-        Matriu(2, 2) = 1
-        Matriu(2, 3) = 1
-        Matriu(2, 4) = 1
-        Matriu(2, 5) = 1
+        Matriu(2, 0) = 50
+        Matriu(2, 1) = 50
+        Matriu(2, 2) = 90
+        Matriu(2, 3) = 50
+        Matriu(2, 4) = 50
+        Matriu(2, 5) = 50
 
-        Matriu(3, 0) = 1
-        Matriu(3, 1) = 1
-        Matriu(3, 2) = 1
-        Matriu(3, 3) = 1
-        Matriu(3, 4) = 1
-        Matriu(3, 5) = 1
+        Matriu(3, 0) = 0
+        Matriu(3, 1) = 0
+        Matriu(3, 2) = 50
+        Matriu(3, 3) = 0
+        Matriu(3, 4) = 0
+        Matriu(3, 5) = 0
 
-        Matriu(4, 0) = 1
-        Matriu(4, 1) = 1
-        Matriu(4, 2) = 1
-        Matriu(4, 3) = 1
-        Matriu(4, 4) = 1
-        Matriu(4, 5) = 1
+        Matriu(4, 0) = 0
+        Matriu(4, 1) = 0
+        Matriu(4, 2) = 50
+        Matriu(4, 3) = 0
+        Matriu(4, 4) = 0
+        Matriu(4, 5) = 0
 
-        Matriu(5, 0) = 1
-        Matriu(5, 1) = 1
-        Matriu(5, 2) = 1
-        Matriu(5, 3) = 1
-        Matriu(5, 4) = 1
-        Matriu(5, 5) = 1
+        Matriu(5, 0) = 0
+        Matriu(5, 1) = 0
+        Matriu(5, 2) = 50
+        Matriu(5, 3) = 0
+        Matriu(5, 4) = 0
+        Matriu(5, 5) = 0
 
+        Matriu(6, 0) = 0
+        Matriu(6, 1) = 0
+        Matriu(6, 2) = 50
+        Matriu(6, 3) = 0
+        Matriu(6, 4) = 0
+        Matriu(6, 5) = 0
 
+        Matriu(7, 0) = 0
+        Matriu(7, 1) = 0
+        Matriu(7, 2) = 50
+        Matriu(7, 3) = 0
+        Matriu(7, 4) = 0
+        Matriu(7, 5) = 0
 
+        Matriu(8, 0) = 0
+        Matriu(8, 1) = 0
+        Matriu(8, 2) = 50
+        Matriu(8, 3) = 0
+        Matriu(8, 4) = 0
+        Matriu(8, 5) = 0
 
-    End sub
+        Matriu(0, 0) = 0
+        Matriu(0, 1) = 0
+        Matriu(0, 2) = 50
+        Matriu(0, 3) = 0
+        Matriu(0, 4) = 0
+        Matriu(0, 5) = 0
+
+    End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitializeGame()
         Dim ports As String() = SerialPort.GetPortNames()
         Dim port As String
         ejex = 0
@@ -238,8 +264,8 @@ Public Class Form1
         If Not SerialPort1.IsOpen Then
             SerialPort1.PortName = cmb_ports.SelectedItem
             SerialPort1.BaudRate = cmb_baud.SelectedItem
-            txt_comunicacion.Text = SerialPort1.PortName
-            txt_comunicacion.Text = txt_comunicacion.Text & SerialPort1.BaudRate
+            'txt_comunicacion.Text = SerialPort1.PortName
+            'txt_comunicacion.Text = txt_comunicacion.Text & SerialPort1.BaudRate
             Try
                 SerialPort1.Open()
 
@@ -266,9 +292,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
 
-    End Sub
 
     Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
         Dim instruccion As String
@@ -284,20 +308,9 @@ Public Class Form1
 
     Private Sub Button24_Click(sender As Object, e As EventArgs) Handles Button24.Click
         If MsgBox("¿You want reset axis values?", vbYesNo, "Confirm") = vbYes Then
-            ejex = 1
-            ejey = 1
-            ejez = 1
-            ejee = 1
-            ejes = 1
-            ejeb = 1
+
             bloqueoinicial()
             actualizaposiciones()
-            ejex = 0
-            ejey = 0
-            ejez = 0
-            ejee = 0
-            ejes = 0
-            ejeb = 0
             actualizaposiciones()
             bloqueoinicial()
 
@@ -305,8 +318,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs)
-        WriteGCode(txt_comand.Text)
-        txt_comunicacion.Text = txt_comunicacion.Text & vbCrLf & "MI PC - " & txt_comand.Text
+        'WriteGCode(txt_comand.Text)
+        'txt_comunicacion.Text = txt_comunicacion.Text & vbCrLf & "MI PC - " & txt_comand.Text
         actualizaposiciones()
     End Sub
 
@@ -316,6 +329,15 @@ Public Class Form1
         moveracoordenada(ListBox1.SelectedItem)
         If seleccionado < ListBox1.Items.Count Then seleccionado = seleccionado + 1
         Timer1.Enabled = False
+
+
+        Try
+            Dim i As Single = SerialPort1.ReadExisting
+            ' LblSensor1.Text = i.ToString
+
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub SerialPort1_DataReceived(sender As Object, e As SerialDataReceivedEventArgs) Handles SerialPort1.DataReceived
@@ -329,17 +351,34 @@ Public Class Form1
     End Sub
 
     Private Sub Executa_Tasca(Num As Integer)
-        WriteGCode("G1 X" & Matriu(Num, 0) & " Y" & Matriu(Num, 1) & " Z" & Matriu(Num, 2) & " E" & Matriu(Num, 3) & " B" & Matriu(Num, 4) & " S" & Matriu(Num, 5))
-        Espera(200)
+        Cargar_matriu()
+        ' WriteGCode("G1 X" & Matriu(Num, 0) & " Y" & Matriu(Num, 1) & " Z" & Matriu(Num, 2) & " E" & Matriu(Num, 3) & " B" & Matriu(Num, 4) & " S" & Matriu(Num, 5))
+        'WriteGCode("G1 Z" & Matriu(Num, 2))
+        '   WriteGCode("G1 Z" & 30)
+        '  actualizaposiciones()
+        ejex = ejex - Matriu(Num, 0)
+        ejey = ejey - Matriu(Num, 1)
+        ejez = ejez - Matriu(Num, 2)
+        ejee = ejee - Matriu(Num, 3)
+        ejeb = ejeb - Matriu(Num, 4)
+        ejes = ejes - Matriu(Num, 5)
+
+        WriteGCode("G1 X" & ejex & " Y" & ejey & " Z" & ejez & " E" & ejee & " B" & ejeb & " S" & ejes)
+        ' WriteGCode("G1 Z" & ejez)
+        actualizaposiciones()
 
 
     End Sub
     Private Sub ButtonT1_Click(sender As Object, e As EventArgs) Handles ButtonT1.Click
-        Executa_Tasca(1)
+        Executa_Tasca(0)
     End Sub
 
     Private Sub ButtonT2_Click(sender As Object, e As EventArgs) Handles ButtonT2.Click
-        Executa_Tasca(2)
+        Executa_Tasca(0)
+    End Sub
+
+    Private Sub cmb_ports_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_ports.SelectedIndexChanged
+
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -481,4 +520,330 @@ Public Class Form1
         lbl_poss.Text = ejes
 
     End Sub
+
+    '3ER
+
+    Dim currentPlayer As Integer = 1 ' 1 for Player X, -1 for Player O
+    Dim board(2, 2) As Integer ' 3x3 game board
+    Dim paneljuego As New Panel() ' Panel to hold the game board buttons
+    Dim panelturno As New Panel() ' Panel to hold the reset button and player turn label
+    Dim playerTurnLabel As New Label() ' Label to indicate player's turn
+    Dim panelsupremo As New Panel()
+
+
+    Private Sub InitializeGame()
+        currentPlayer = 1
+
+        ' Clear the text and reset font color of the buttons in panel1
+        For Each button As Button In paneljuego.Controls.OfType(Of Button)()
+            button.Text = ""
+            button.ForeColor = Color.Black ' Reset font color to default
+        Next
+
+
+        ' Create panel1 to hold the game board buttons
+        paneljuego.Size = New Size(150, 150)
+        paneljuego.Location = New Point(50, 50)
+        Me.Controls.Add(paneljuego)
+
+        ' Create buttons and add them to panel1
+        For i As Integer = 0 To 2
+            For j As Integer = 0 To 2
+                board(i, j) = 0
+                Dim button As New Button()
+                button.Size = New Size(50, 50)
+                button.Location = New Point(j * 50, i * 50)
+                button.Tag = New Point(i, j)
+                button.Font = New Font(button.Font.FontFamily, 18)
+                AddHandler button.Click, AddressOf Button_Click
+                paneljuego.Controls.Add(button)
+            Next
+        Next
+
+        ' Create panel2 to hold reset button and player turn label
+        panelturno.Size = New Size(182, 302)
+        panelturno.Location = New Point(250, 0)
+        Me.Controls.Add(panelturno)
+
+
+        panelsupremo.Size = New Size(423, 302)
+        panelsupremo.Location = New Point(0, 0)
+        panelsupremo.BackColor = Color.SlateGray
+        Me.Controls.Add(panelsupremo)
+        panelsupremo.Controls.Add(paneljuego)
+        panelsupremo.Controls.Add(panelturno)
+        PanelMega.Controls.Add(panelsupremo)
+
+        ' Create reset button and add it to panel2
+        Dim resetButton As New Button()
+        resetButton.Text = "Reset"
+        resetButton.Size = New Size(50, 20)
+        resetButton.Location = New Point(0, 100)
+        AddHandler resetButton.Click, AddressOf ResetButton_Click
+        panelturno.Controls.Add(resetButton)
+
+        ' Create player turn label and add it to panel2
+        playerTurnLabel.Text = "Turn: X"
+        playerTurnLabel.AutoSize = True
+        playerTurnLabel.Location = New Point(0, 150)
+        panelturno.Controls.Add(playerTurnLabel)
+    End Sub
+
+    Private Sub Button_Click(sender As Object, e As EventArgs)
+        Dim button As Button = DirectCast(sender, Button)
+        Dim indices As Point = DirectCast(button.Tag, Point)
+        Dim row As Integer = indices.X
+        Dim col As Integer = indices.Y
+
+        If board(row, col) = 0 AndAlso Not CheckForWin(1) AndAlso Not CheckForWin(-1) AndAlso Not CheckForDraw() Then
+            ' Human player's turn
+            board(row, col) = currentPlayer
+            button.Text = If(currentPlayer = 1, "X", "O")
+
+            If CheckForWin(1) Or CheckForWin(-1) Then
+                ApplyWinningColor()
+                MessageBox.Show($"Player {(If(currentPlayer = 1, "X", "O"))} wins!")
+                InitializeGame()
+            ElseIf CheckForDraw() Then
+                MessageBox.Show("It's a draw!")
+                InitializeGame()
+            Else
+                currentPlayer *= -1 ' Switch player
+                UpdatePlayerTurnLabel()
+
+                If currentPlayer = -1 Then
+                    ' Computer player's turn (AI)
+                    Dim bestMove As Tuple(Of Integer, Integer) = GetBestMove()
+                    If bestMove IsNot Nothing Then
+                        board(bestMove.Item1, bestMove.Item2) = currentPlayer
+                        Dim computerButton As Button = GetButton(bestMove.Item1, bestMove.Item2)
+                        computerButton.Text = "O"
+                        Executa_Tasca(Valor_unidimensional(bestMove))
+                        MessageBox.Show(Valor_unidimensional(bestMove))
+                        If CheckForWin(1) Or CheckForWin(-1) Then
+                            ApplyWinningColor()
+                            MessageBox.Show($"Player O wins!")
+                            InitializeGame()
+                        ElseIf CheckForDraw() Then
+                            MessageBox.Show("It's a draw!")
+                            InitializeGame()
+                        Else
+                            currentPlayer *= -1 ' Switch player
+                            UpdatePlayerTurnLabel()
+                        End If
+                    End If
+                End If
+            End If
+        Else
+            ' Invalid move (cell already occupied)
+            MessageBox.Show("Invalid move. Cell already occupied.")
+        End If
+    End Sub
+
+    Private Function Valor_unidimensional(Conjunt As Tuple(Of Integer, Integer))
+
+        Dim valor As Integer
+
+        If Conjunt.Item1 + Conjunt.Item2 = 0 Then
+            valor = 0
+        ElseIf Conjunt.Item1 + Conjunt.Item2 = 1 Then
+            If Conjunt.Item1 = 1 Then
+                valor = 3
+            Else
+                valor = 1
+            End If
+        ElseIf Conjunt.Item1 + Conjunt.Item2 = 2 Then
+            If Conjunt.Item1 = 2 Then
+                valor = 6
+            ElseIf Conjunt.Item2 = 2 Then
+                valor = 2
+            Else
+                valor = 4
+            End If
+        ElseIf Conjunt.Item1 + Conjunt.Item2 = 3 Then
+            If Conjunt.Item1 = 1 Then
+                valor = 5
+            Else
+                valor = 7
+            End If
+        ElseIf Conjunt.Item1 + Conjunt.Item2 = 4 Then
+            valor = 8
+
+        End If
+
+        Return valor
+
+    End Function
+
+    Private Sub ResetButton_Click(sender As Object, e As EventArgs)
+        ' Handle reset button click event
+        InitializeGame()
+    End Sub
+
+    Private Sub ApplyWinningColor()
+        ' Change the font color of the winning row, column, or diagonal
+        For i As Integer = 0 To 2
+            If CheckRow(i) Then
+                SetButtonColor(i, 0, Color.Red)
+                SetButtonColor(i, 1, Color.Red)
+                SetButtonColor(i, 2, Color.Red)
+            End If
+
+            If CheckColumn(i) Then
+                SetButtonColor(0, i, Color.Red)
+                SetButtonColor(1, i, Color.Red)
+                SetButtonColor(2, i, Color.Red)
+            End If
+        Next
+
+        If CheckDiagonal(0, 0, 1, 1, 2, 2) Then
+            SetButtonColor(0, 0, Color.Red)
+            SetButtonColor(1, 1, Color.Red)
+            SetButtonColor(2, 2, Color.Red)
+        End If
+
+        If CheckDiagonal(0, 2, 1, 1, 2, 0) Then
+            SetButtonColor(0, 2, Color.Red)
+            SetButtonColor(1, 1, Color.Red)
+            SetButtonColor(2, 0, Color.Red)
+        End If
+    End Sub
+
+    Private Function CheckRow(row As Integer) As Boolean
+        Return board(row, 0) = currentPlayer AndAlso board(row, 1) = currentPlayer AndAlso board(row, 2) = currentPlayer
+    End Function
+
+    Private Function CheckColumn(col As Integer) As Boolean
+        Return board(0, col) = currentPlayer AndAlso board(1, col) = currentPlayer AndAlso board(2, col) = currentPlayer
+    End Function
+
+    Private Function CheckDiagonal(row1 As Integer, col1 As Integer, row2 As Integer, col2 As Integer, row3 As Integer, col3 As Integer) As Boolean
+        Return board(row1, col1) = currentPlayer AndAlso board(row2, col2) = currentPlayer AndAlso board(row3, col3) = currentPlayer
+    End Function
+
+    Private Sub SetButtonColor(row As Integer, col As Integer, color As Color)
+        ' Helper method to set the font color of a button at a specific row and column
+        For Each control As Control In paneljuego.Controls
+            If TypeOf control Is Button Then
+                Dim button As Button = DirectCast(control, Button)
+                Dim indices As Point = DirectCast(button.Tag, Point)
+                If indices.X = row AndAlso indices.Y = col Then
+                    button.ForeColor = color
+                    Exit For
+                End If
+            End If
+        Next
+    End Sub
+
+
+
+    Private Function CheckForWin(Player As Integer) As Boolean
+        ' Check for a win in the current row, column, and diagonals
+        For i As Integer = 0 To 2
+            If (board(i, 0) = Player AndAlso board(i, 1) = Player AndAlso board(i, 2) = Player) OrElse
+               (board(0, i) = Player AndAlso board(1, i) = Player AndAlso board(2, i) = Player) Then
+                Return True
+            End If
+        Next
+
+        Return (board(0, 0) = Player AndAlso board(1, 1) = Player AndAlso board(2, 2) = Player) OrElse
+               (board(0, 2) = Player AndAlso board(1, 1) = Player AndAlso board(2, 0) = Player)
+    End Function
+
+
+    Private Function CheckForDraw() As Boolean
+        ' Check for a draw (no empty cells left)
+        For i As Integer = 0 To 2
+            For j As Integer = 0 To 2
+                If board(i, j) = 0 Then
+                    Return False ' Found an empty cell, game is not a draw
+                End If
+            Next
+        Next
+        Return True ' All cells are filled, game is a draw
+    End Function
+
+    Private Function GetButton(row As Integer, col As Integer) As Button
+        ' Helper method to get the button at a specific row and column
+        For Each control As Control In paneljuego.Controls
+            If TypeOf control Is Button Then
+                Dim button As Button = DirectCast(control, Button)
+                Dim indices As Point = DirectCast(button.Tag, Point)
+                If indices.X = row AndAlso indices.Y = col Then
+                    Return button
+                End If
+            End If
+        Next
+        Return Nothing
+    End Function
+
+    Private Function GetBestMove() As Tuple(Of Integer, Integer)
+        Dim bestScore As Integer = -1
+        Dim bestMove As Tuple(Of Integer, Integer) = Nothing
+
+        For i As Integer = 0 To 2
+            For j As Integer = 0 To 2
+                If board(i, j) = 0 Then
+                    ' Empty cell, try the move
+                    board(i, j) = -1
+                    Dim score As Integer = Minimax(board, 0, False)
+                    board(i, j) = 0 ' Undo the move
+
+                    If score > bestScore Then
+                        bestScore = score
+                        bestMove = New Tuple(Of Integer, Integer)(i, j)
+                    End If
+                End If
+            Next
+        Next
+
+        Return bestMove
+    End Function
+
+    Private Function Minimax(board As Integer(,), depth As Integer, isMaximizing As Boolean) As Integer
+        If CheckForWin(-1) Then
+            Return 1
+        ElseIf CheckForWin(1) Then
+            Return -1
+
+        ElseIf CheckForDraw() Then
+            Return 0
+        End If
+
+        If isMaximizing Then
+            Dim bestScore As Integer = -1
+            For i As Integer = 0 To 2
+                For j As Integer = 0 To 2
+                    If board(i, j) = 0 Then
+                        ' Empty cell, try the move
+                        board(i, j) = -1
+                        bestScore = Math.Max(bestScore, Minimax(board, depth + 1, False))
+                        board(i, j) = 0 ' Undo the move
+                    End If
+                Next
+            Next
+            Return bestScore
+        Else
+            Dim bestScore As Integer = 1
+            For i As Integer = 0 To 2
+                For j As Integer = 0 To 2
+                    If board(i, j) = 0 Then
+                        ' Empty cell, try the move
+                        board(i, j) = 1
+                        bestScore = Math.Min(bestScore, Minimax(board, depth + 1, True))
+                        board(i, j) = 0 ' Undo the move
+                    End If
+                Next
+            Next
+            Return bestScore
+        End If
+    End Function
+
+    Private Sub UpdatePlayerTurnLabel()
+        ' Update player turn label
+        playerTurnLabel.Text = $"Turn: {(If(currentPlayer = 1, "X", "O"))}"
+        Espera(500)
+    End Sub
+
+
 End Class
